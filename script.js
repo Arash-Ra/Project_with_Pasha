@@ -40,6 +40,7 @@ const currentScore = function (round, dice) {
   return 0;
 };
 
+//
 // Pasha solution
 // const currentScore = function (round, dice) {
 //   console.log(`Dice round: ${round}`);
