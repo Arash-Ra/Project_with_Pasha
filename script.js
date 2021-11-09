@@ -62,41 +62,18 @@ const currentScore = function (round, dice) {
 //   return rCount;
 // };
 
-currentScore(3, [1, 2, 2]);
-
-const playGame = function () {
-  let round = 1;
-  let totalScore = 0;
-  let dice = rollDice();
-  console.log(round, dice);
-  // console.log(currentScore);
-  let current = currentScore(round, dice);
-  displayCurrentScore(current);
-
-  while (currentScore > 0) {
-    totalScore += current;
-    console.log(totalScore);
-    displayCurrentScore(totalScore);
-    displayTotalScore(totalScore);
-    console.log("please roll dice again");
-    dice = rollDice();
-    current = currentScore(round, dice);
-    displayCurrentScore(current);
-  }
-  displayTotalScore(totalScore);
-  // switchPlayer();
-};
-
 ///
 // console.log("-------------------------Play Game------------------------");
 
 const playGame = function () {
   let round = 1;
+  // let Player = 1;
   let totalScore = 0;
   console.log("please roll dice!");
   //user push roll dice btn
+
   let dice = rollDice();
-  console.log(dice);
+  displayDice(dice);
 
   let current = currentScore(round, dice);
   displayCurrentScore(current);
@@ -121,6 +98,8 @@ const playGame = function () {
   return totalScore;
 };
 
+document.querySelector(".btn-dice").addEventListener("click", playGame);
+
 // resetGame();
 
 //displays
@@ -133,35 +112,39 @@ const displayDice = function (dice) {
 };
 
 const displayTotalScore = function (score) {
+  document.querySelector(".total-score-1").textContent;
+
   console.log("Total: ", score);
 };
 
 const displayCurrentScore = function (score) {
+  document.querySelector(".current-score-1").textContent = score;
   console.log("Current: ", score);
 };
 
 // playGame();
 
-const result = function () {
-  let p1 = 0;
-  let p2 = 0;
-  let set = 1;
-  while (p1 <= 21 && p2 <= 21) {
-    //p1 start the game
-    p1 += playGame();
+// const result = function () {
+//   let p1 = 0;
+//   let p2 = 0;
+//   let set = 1;
+//   while (p1 <= 21 && p2 <= 21) {
+//     //p1 start the game
+//     p1 += playGame();
 
-    //p2 start the game
-    p2 += playGame();
-    set++;
-  }
+//     //p2 start the game
+//     p2 += playGame();
+//     set++;
+//   }
 
-  console.log(
-    `%c${p1 > p2 ? "player 1" : "player 2"} won This Round in ${set} set!
-  player 1 final score: ${p1}
-  player 2 final score: ${p2}`,
-    "color: red; font-size: 1rem"
-  );
-};
+//   // to use color and change the size of the txt in console.log
+//   console.log(
+//     `%c${p1 > p2 ? "player 1" : "player 2"} won This Round in ${set} set!
+//   player 1 final score: ${p1}
+//   player 2 final score: ${p2}`,
+//     "color: red; font-size: 1rem"
+//   );
+// };
 
-result();
+// result();
 // console.log("%cHello", "color: green; background: yellow; font-size: 1rem");
