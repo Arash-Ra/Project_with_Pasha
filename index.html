@@ -15,8 +15,8 @@
 
     <title>Bunco Game!</title>
   </head>
-  <body class="bg-info">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Bunco Now!</a>
         <button
@@ -43,10 +43,17 @@
     <div class="container">
       <h1 class="display-3 text-center text-primary mb-5">Play Bunco Game!</h1>
       <div class="row justify-content-around mb-5">
-        <button class="btn-dice col-3 btn btn-success">Roll Dice!</button>
-        <button class="btn-reset col-3 btn btn-danger">Reset Game</button>
+        <button class="btn-roll col-3 btn btn-success">Roll Dice!</button>
+        <button class="col-3 btn btn-danger">Reset Game</button>
       </div>
-      <div class="row">
+      <div>
+        <form action="">
+          <button class="btn-start col-3 btn btn-info">Start Game</button>
+          <input class="input1" type="text" placeholder="Player-1" />
+          <input class="input2" type="text" placeholder="Player-2" />
+        </form>
+      </div>
+      <!-- <div class="row">
         <div
           class="col border rounded-circle border-3 bg-primary mx-1 text-center"
         >
@@ -67,42 +74,137 @@
         >
           Dice
         </div>
-      </div>
-      <div class="row">
-        <div class="col m-1 border border-3 bg-success">Round 1</div>
-        <div class="current-score-1 col m-1 border border-3 bg-warning"></div>
-        <div class="current-score-2 col m-1 border border-3 bg-warning"></div>
-        <div class="dice col m-1 border border-3 bg-secondary"></div>
-      </div>
-      <div class="row">
-        <div class="col m-1 border border-3 bg-success">Total Score</div>
-        <div class="total-score-1 col m-1 border border-3 bg-warning"></div>
-        <div class="total-score-2 col m-1 border border-3 bg-warning"></div>
-        <div class="col m-1 border border-3 bg-secondary"></div>
-      </div>
-      <div class="row">
-        <div class="col m-1 border border-3 bg-success">Round 3</div>
-        <div class="col m-1 border border-3 bg-warning"></div>
-        <div class="col m-1 border border-3 bg-warning"></div>
-        <div class="col m-1 border border-3 bg-secondary"></div>
-      </div>
-      <div class="row">
-        <div class="col m-1 border border-3 bg-success">Round 4</div>
-        <div class="col m-1 border border-3 bg-warning"></div>
-        <div class="col m-1 border border-3 bg-warning"></div>
-        <div class="col m-1 border border-3 bg-secondary"></div>
-      </div>
-      <div class="row">
-        <div class="col m-1 border border-3 bg-success">Round 5</div>
-        <div class="col m-1 border border-3 bg-warning"></div>
-        <div class="col m-1 border border-3 bg-warning"></div>
-        <div class="col m-1 border border-3 bg-secondary"></div>
-      </div>
-      <div class="row">
-        <div class="col m-1 border border-3 bg-success">Round 6</div>
-        <div class="col m-1 border border-3 bg-warning"></div>
-        <div class="col m-1 border border-3 bg-warning"></div>
-        <div class="col m-1 border border-3 bg-secondary"></div>
+      </div> -->
+      <div class="container border border-2">
+        <div class="row justify-content-between">
+          <div
+            class="
+              cart-1
+              container
+              col-3
+              m-1
+              border border-5
+              bg-dark bg-gradient bg-opacity-75
+            "
+          >
+            <div class="row border border-3">
+              <img src="avataaars.png" alt="" srcset="" />
+            </div>
+            <div
+              class="
+                player-1
+                row
+                my-3
+                mx-4
+                border border-3
+                rounded-3
+                justify-content-center
+                bg-success bg-opacity-75
+                text-white
+              "
+            >
+              P1
+            </div>
+            <div
+              class="
+                current-1
+                row
+                border border-3
+                rounded-3
+                mb-2
+                mx-4
+                justify-content-center
+                bg-danger bg-opacity-75
+              "
+            >
+              Current
+            </div>
+            <div
+              class="
+                total-1
+                row
+                border border-3
+                rounded-3
+                mx-4
+                mb-2
+                justify-content-center
+                bg-warning bg-opacity-75
+              "
+            >
+              Total
+            </div>
+          </div>
+          <div class="col-3 m-1 border border- bg-secondary text-center">
+            <div
+              class="
+                dice-area
+                row
+                bg-primary
+                justify-content-center
+                bg-opacity-75
+              "
+            >
+              Round
+            </div>
+          </div>
+          <div
+            class="
+              cart-2
+              container
+              col-3
+              m-1
+              border border-5 border-dark
+              bg-dark bg-gradient bg-opacity-50
+            "
+          >
+            <div class="row border border-3 rounded-circle bg-info">
+              <img class="img-fluid" src="avataaars.png" alt="" srcset="" />
+            </div>
+            <div
+              class="
+                player-2
+                row
+                my-3
+                mx-4
+                border border-3
+                rounded-3
+                justify-content-center
+                bg-success bg-opacity-75
+                text-white
+              "
+            >
+              P2
+            </div>
+            <div
+              class="
+                current-2
+                row
+                border border-3
+                rounded-3
+                mb-2
+                mx-4
+                justify-content-center
+                bg-danger bg-opacity-75
+              "
+            >
+              Current
+            </div>
+            <div
+              class="
+                total-2
+                row
+                border border-3
+                rounded-3
+                mx-4
+                mb-2
+                justify-content-center
+                bg-warning bg-opacity-75
+              "
+            >
+              Total
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->

@@ -1,14 +1,21 @@
 "use strict";
 
-// let dice = [];
-// Math.trunc(Math.random() * 6) + 1;
-// for (let i = 0; i <= 2; i++) {
-//   Math.trunc(Math.random() * 6) + 1;
-//   dice[i].push();
-// }
+const btnRoll = document.querySelector(".btn-roll");
+const btnStart = document.querySelector(".btn-start");
+const player1 = document.querySelector(".player-1");
+const player2 = document.querySelector(".player-2");
+const input1 = document.querySelector(".input1");
+const input2 = document.querySelector(".input2");
+const current1 = document.querySelector(".current-1");
+const current2 = document.querySelector(".current-2");
+const total1 = document.querySelector(".total-1");
+const total2 = document.querySelector(".total-2");
+const cart1 = document.querySelector(".cart-1");
+const cart2 = document.querySelector(".cart-2");
+const diceArea = document.querySelector(".dice-area");
+//function
 
 //1- Roll Dice
-// Math.trunc(Math.random() * 6) + 1;
 
 const randomDice = function () {
   return Math.floor(Math.random() * 6 + 1);
@@ -18,133 +25,146 @@ const rollDice = function () {
   return [randomDice(), randomDice(), randomDice()];
 };
 
-// Arash solution
+//2- calculateCurrentScore
+
 const currentScore = function (round, dice) {
-  let diceAndRound = 0;
-  // console.log(`Round: ${round}`);
-  // console.log(`Dices: ${dice}`);
+  let rCount = 0;
+  let temp = 0;
+  let dCount = 0;
+  dice.forEach((d) => {
+    if (d === round) rCount++;
 
-  dice.forEach(function (d, i) {
-    if (d === round) {
-      diceAndRound++;
-      diceAndRound > d;
-    }
-    console.log(`Total score with dice ${i + 1}: ${diceAndRound}`);
+    d === temp ? dCount++ : (temp = d);
   });
-  if (diceAndRound === 3) return 21;
-  if (diceAndRound === 2) return 2;
-  if (diceAndRound === 1) return 1;
+  // console.log("rCount: ", rCount);
+  // console.log("dCount: ", dCount);
+  // console.log("temp: ", temp);
 
-  if (diceAndRound === 0 && dice[0] === dice[1] && dice[1] === dice[2])
-    return 5;
-  return 0;
+  if (dCount === 2 && rCount === 0) return 5;
+  if (rCount === 3) return 21;
+  return rCount;
 };
 
-//
-// Pasha solution
-// const currentScore = function (round, dice) {
-//   console.log(`Dice round: ${round}`);
-//   console.log(`Dices: ${dice}`);
-//   let rCount = 0;
-//   let temp = 0;
-//   let dCount = 0;
-//   dice.forEach((d) => {
-//     if (d === round) rCount++;
-
-//     d === temp ? dCount++ : (temp = d);
-//   });
-//   console.log("rCount: ", rCount);
-//   console.log("dCount: ", dCount);
-//   console.log("temp: ", temp);
-
-//   if (dCount === 2 && rCount === 0) return 5;
-//   if (rCount === 3) return 21;
-//   return rCount;
-// };
-
-///
+/////////////////////////////////
 // console.log("-------------------------Play Game------------------------");
-
-const playGame = function () {
-  let round = 1;
-  // let Player = 1;
-  let totalScore = 0;
-  console.log("please roll dice!");
-  //user push roll dice btn
-
-  let dice = rollDice();
-  displayDice(dice);
-
-  let current = currentScore(round, dice);
-  displayCurrentScore(current);
-
-  while (current > 0) {
-    totalScore += current;
-    displayTotalScore(totalScore);
-
-    console.log("please roll dice again");
-
-    //user push roll dice btn
-    dice = rollDice();
-    console.log(dice);
-    current = currentScore(round, dice);
-    displayCurrentScore(current);
-  }
-  displayTotalScore(totalScore);
-  switchPlayer();
-  console.log("");
-  console.log("");
-
-  return totalScore;
-};
-
-document.querySelector(".btn-dice").addEventListener("click", playGame);
-
-// resetGame();
 
 //displays
 const switchPlayer = function () {
   console.log("%cSwitching Player", "color: green; font-size: 1rem");
+  if ([...cart1.classList].includes("border-dark")) {
+    cart1.classList.remove("border-dark");
+    cart2.classList.add("border-dark");
+  } else {
+    cart2.classList.remove("border-dark");
+    cart1.classList.add("border-dark");
+  }
 };
-
 const displayDice = function (dice) {
   document.querySelector(".dice").textContent = [...dice];
 };
 
 const displayTotalScore = function (score) {
-  document.querySelector(".total-score-1").textContent;
-
   console.log("Total: ", score);
 };
-
 const displayCurrentScore = function (score) {
-  document.querySelector(".current-score-1").textContent = score;
   console.log("Current: ", score);
 };
 
-// playGame();
+// console.log("%cHello", "color: green; background: yellow; font-size: 1rem");
 
-// const result = function () {
-//   let p1 = 0;
-//   let p2 = 0;
-//   let set = 1;
-//   while (p1 <= 21 && p2 <= 21) {
-//     //p1 start the game
-//     p1 += playGame();
+btnStart.addEventListener("click", function (e) {
+  e.preventDefault();
+  // console.log("in event handler: ", input1.value);
+  cart1.classList.add("border-dark");
+  cart2.classList.remove("border-dark");
 
-//     //p2 start the game
-//     p2 += playGame();
-//     set++;
-//   }
+  player1.textContent = input1.value;
+  player2.textContent = input2.value;
+  current1.textContent = 0;
+  current2.textContent = 0;
+  total1.textContent = 0;
+  total2.textContent = 0;
+});
 
-//   // to use color and change the size of the txt in console.log
-//   console.log(
-//     `%c${p1 > p2 ? "player 1" : "player 2"} won This Round in ${set} set!
-//   player 1 final score: ${p1}
-//   player 2 final score: ${p2}`,
-//     "color: red; font-size: 1rem"
-//   );
+btnRoll.addEventListener("click", function () {
+  // e.preventDefault();
+  let dice;
+  let current;
+  let total;
+  const isPlayer1 = [...cart1.classList].includes("border-dark");
+  console.log("btnDice listener", isPlayer1);
+  if (isPlayer1) {
+    total = Number(total1.textContent);
+    diceArea.textContent = dice = rollDice();
+    current1.textContent = current = currentScore(1, dice);
+  } else {
+    total = Number(total2.textContent);
+    diceArea.textContent = dice = rollDice();
+    current2.textContent = current = currentScore(1, dice);
+  }
+
+  if (current > 0) {
+    if (isPlayer1) {
+      total += current;
+      total1.textContent = total;
+    } else {
+      total += current;
+      total2.textContent = total;
+    }
+  } else {
+    switchPlayer();
+  }
+
+  //   let totalSet1 = 0;
+  //   let dice = rollDice();
+  //   console.log(dice);
+  //   displayDice(dice);
+  //   const current = currentScore(1, dice);
+  //   displayCurrentScore(current);
+  //   if (current > 0) {
+  //     totalSet1 += current;
+  //     totalScore1 += totalSet1;
+  //     displayTotalScore(totalScore1);
+  //     console.log("Roll Again!");
+});
+
+// Arash
+// //displays
+// const switchPlayer = function () {
+//   console.log("%cSwitching Player", "color: green; font-size: 1rem");
 // };
 
-// result();
-// console.log("%cHello", "color: green; background: yellow; font-size: 1rem");
+// const displayDice = function (dice) {
+//   document.querySelector(".dice-show").textContent = [...dice];
+// };
+
+// const displayTotalScore = function (score) {
+//   document.querySelector(".total-score-1").textContent = score;
+
+//   console.log("Total: ", score);
+// };
+
+// const displayCurrentScore = function (score) {
+//   document.querySelector(".current-score-1").textContent = score;
+//   console.log("Current: ", score);
+// };
+
+// let totalScore1 = 0;
+// let totalScore2 = 0;
+
+// document.querySelector(".btn-dice").addEventListener("click", function () {
+//   let totalSet1 = 0;
+//   let dice = rollDice();
+//   console.log(dice);
+//   displayDice(dice);
+//   const current = currentScore(1, dice);
+//   displayCurrentScore(current);
+//   if (current > 0) {
+//     totalSet1 += current;
+//     totalScore1 += totalSet1;
+//     displayTotalScore(totalScore1);
+//     console.log("Roll Again!");
+
+//     // document.querySelector(".btn-dice").addEventListener('click', )
+//   } else switchPlayer();
+// });
