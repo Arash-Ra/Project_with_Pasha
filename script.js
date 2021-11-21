@@ -15,7 +15,7 @@ const cart2 = document.querySelector(".cart-2");
 const diceArea = document.querySelector(".dice-area");
 //function
 
-//1- Roll Dice
+//1- Roll a Dice
 
 const randomDice = function () {
   return Math.floor(Math.random() * 6 + 1);
