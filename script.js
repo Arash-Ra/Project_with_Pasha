@@ -71,10 +71,22 @@ const displayCurrentScore = function (score) {
 };
 
 // console.log("%cHello", "color: green; background: yellow; font-size: 1rem");
+const p1 = {
+  round: 1,
+};
+
+const p2 = {
+  round: 1,
+};
 
 btnStart.addEventListener("click", function (e) {
+  console.log(e);
+
   e.preventDefault();
-  // console.log("in event handler: ", input1.value);
+  p1.name = input1.value;
+  p2.name = input2.value;
+
+  console.log("in event handler: ", input1.value);
   cart1.classList.add("border-dark");
   cart2.classList.remove("border-dark");
 
@@ -91,29 +103,39 @@ btnRoll.addEventListener("click", function () {
   let dice;
   let current;
   let total;
+  let round;
   const isPlayer1 = [...cart1.classList].includes("border-dark");
+
+  //before rolling dice: 1.round? 2.previouse total
+  //player{name: ,total: , round:, roundScore:}
+
   console.log("btnDice listener", isPlayer1);
   if (isPlayer1) {
     total = Number(total1.textContent);
     diceArea.textContent = dice = rollDice();
-    current1.textContent = current = currentScore(1, dice);
+    current1.textContent = current = currentScore(p1.round, dice);
   } else {
     total = Number(total2.textContent);
     diceArea.textContent = dice = rollDice();
-    current2.textContent = current = currentScore(1, dice);
+    current2.textContent = current = currentScore(p2.round, dice);
   }
 
   if (current > 0) {
     if (isPlayer1) {
       total += current;
       total1.textContent = total;
+      p1.total = total;
     } else {
       total += current;
       total2.textContent = total;
+      p2.total = total;
     }
   } else {
     switchPlayer();
   }
+
+  console.log("p1: ", p1);
+  console.log("p2: ", p2);
 
   //   let totalSet1 = 0;
   //   let dice = rollDice();
